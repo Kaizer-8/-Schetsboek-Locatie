@@ -13,6 +13,7 @@ void setup(){
    println("quest 3 complete");
  }
  
- if (quest == true && quest1 == true && quest2 == true);
- 
+ {if (quest == true && quest1 == true && quest2 == true);
+println("congratulations on finishing my game");
+}
 }
