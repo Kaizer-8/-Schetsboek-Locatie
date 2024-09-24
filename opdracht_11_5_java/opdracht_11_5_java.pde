@@ -1,17 +1,14 @@
+String name[] = {"jen","janne","jan","jennetje","jenske"};
 boolean gevonden;
-String[] leeftijden = {"john, jan, jannetje, jannes,jinksjes"};
 
 void setup(){
-  println (leeftijden);
-
-  /*
   gevonden = false;
-  for(int i = 0; i < leeftijden.length; i++){
-    
-    if(leeftijden == jan){
+  for (int i =0; i < 5; i++){
+    if (name[i]== "jan"){
       gevonden = true;
+    println(name[i],"bestaat");
+    }else{
+      println("jan bestaat niet");
     }
-  }  
-  
-  println(gevonden);*/
+  }
 }
