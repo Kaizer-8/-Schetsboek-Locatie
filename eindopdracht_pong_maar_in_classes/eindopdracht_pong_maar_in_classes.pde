@@ -17,7 +17,8 @@ Ball ball = new Ball();
 class Ball {
   float x = 250;
   float y = 350;
-  float speed = 3;
+  float speedx = 3;
+  float speedy = 3;
   
   void drawme() {
     fill(255, 255, 255);
@@ -25,17 +26,28 @@ class Ball {
   }
   
   void move() {
-    x += 3;
-    y += 3;
-    if ( ball.y > 500) {
-      ball.speed = ball.speed *-1;
+    x = x + speedx;
+    y = y + speedy;
+    if ( y > 500) {
+      speedy = speedy *-1;
     }
-    if ( ball.y <= 0) {
-      ball.speed = ball.speed *-1;
+    if ( y <= 0) {
+      speedy = speedy *-1;
     }
   }
-}
+
 void collision() {
+    // a >= 689 en a <= 700 checkt dat die horizontaal correct staat anders werkt de code niet.
+  //Als de code klopt dat kijkt die of de hoogte goed is als b >= recty dan heb je de bal gemist met de flipper en dan klopt de code niet.
+  //en b <= (recty + lengte) dan komt de ball tegen de flipper en en klopt de code.
+  if ( x >= 689 && x <= 700 && y >= recty && y <= (recty + lengte)) {
+    speedx = speedx *-1;
+  }
+  /* de code controleerd of de ball wat nu a is tussen 0 en 10 zit wat mijn flipper is het tweede deel zegt de hoogte waar die zit en of die hem heeft geraakt. */
+  if ( x <= 10 && x >= 0 && y >= rectx && y <= (rectx + lengte)) {
+    speedx = speedx *-1;
+  }
+}
 }
 void setup() {
   size(700, 500);
@@ -56,7 +68,7 @@ void draw() {
   noFill();
   ball.drawme();
   ball.move();
-
+  ball.collision();
 
 
   for (int i = 0; i < middenlijny.length; i++) {
@@ -68,13 +80,7 @@ void draw() {
   // a >= 689 en a <= 700 checkt dat die horizontaal correct staat anders werkt de code niet.
   //Als de code klopt dat kijkt die of de hoogte goed is als b >= recty dan heb je de bal gemist met de flipper en dan klopt de code niet.
   //en b <= (recty + lengte) dan komt de ball tegen de flipper en en klopt de code.
-  if ( ball.x >= 689 && ball.x <= 700 && ball.y >= recty && ball.y <= (recty + lengte)) {
-    ball.speed = ball.speed *-1;
-  }
-  /* de code controleerd of de ball wat nu a is tussen 0 en 10 zit wat mijn flipper is het tweede deel zegt de hoogte waar die zit en of die hem heeft geraakt. */
-  if ( ball.x <= 10 && ball.x >= 0 && ball.y >= rectx && ball.y <= (rectx + lengte)) {
-    ball.speed = ball.speed *-1;
-  }
+
   // deze code zorgt ervoor dat de flippers niet uit het scherm kunnen gaan.
   if (rectx <= -5 ) {
     rectx = rectx +5;
